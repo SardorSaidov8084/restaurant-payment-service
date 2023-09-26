@@ -17,18 +17,19 @@ type MerchantSetting interface {
 type merchantSvcImpl struct {
 	merchantRepo repositories.MerchantRepository
 }
-func NewMerchantService( merchantRepo repositories.MerchantRepository) MerchantSetting {
+
+func NewMerchantService(merchantRepo repositories.MerchantRepository) MerchantSetting {
 	return &merchantSvcImpl{
 		merchantRepo: merchantRepo,
 	}
 }
 
-func (s *merchantSvcImpl) CreateMerchantSetting(ctx context.Context, entityID string) (*models.MerchantSetting, error){
+func (s *merchantSvcImpl) CreateMerchantSetting(ctx context.Context, entityID string) (*models.MerchantSetting, error) {
 
 	setting := &models.MerchantSetting{
-		EntityID: entityID,
+		EntityID:  entityID,
 		CashboxID: "",
-		Enabled: true,
+		Enabled:   true,
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 	}
@@ -41,5 +42,9 @@ func (s *merchantSvcImpl) CreateMerchantSetting(ctx context.Context, entityID st
 
 	return setting, nil
 }
-func (s *merchantSvcImpl) UpdateMerchantSetting(ctx context.Context, setting *models.MerchantSetting) error
-func (s *merchantSvcImpl) GetMerchantSetting(ctx context.Context, entityID string) (*models.MerchantSetting, error)
+func (s *merchantSvcImpl) UpdateMerchantSetting(ctx context.Context, setting *models.MerchantSetting) error {
+	return s.merchantRepo.UpdateMerchantSetting(ctx, setting)
+}
+func (s *merchantSvcImpl) GetMerchantSetting(ctx context.Context, entityID string) (*models.MerchantSetting, error) {
+	return s.merchantRepo.GetMerchantSetting(ctx, entityID)
+}
