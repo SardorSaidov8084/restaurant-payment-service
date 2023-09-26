@@ -1,0 +1,67 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=restaurant_payment
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5436:5432"
+    restart: always
+    networks:
+      - mcs-network
+    volumes:
+      - postgres_data:/val/lib/postgresl
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  restaurant-payment-migration:
+    image: migrate/migrate
+    container_name: restaurant-payment-migration
+    restart: "no"
+    networks:
+      - mcs-network
+    volumes:
+      - ../src/infrastructure/migrations:/migrations
+    command:
+      [
+        "-path=/migrations/",
+        "-database",
+        "postgres://postgres:postgres@postgres:5432/restaurant?sslmode=disable",
+        "up",
+      ]
+    depends_on:
+      postgres:
+        condition: service_healthy
+  restaurant-payment-service:
+    image: restaurant-payment-service
+    container_name: restaurant-payment-service
+    environment:
+      - LOG_LEVEL=debug
+      - HTTP_PORT=:45000
+      - GRPC_PORT=:4545
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=restaurant
+    depends_on:
+      - restaurant-payment-migration
+    ports:
+      - "45000:45000"
+      - "4545:4545"
+    restart: always
+    networks:
+      - mcs-network
+    volumes:
+      - ${PWD}/data:/data
+networks:
+  mcs-network:
+    external: true
+volumes:
+  postgres_data:
+    driver: local
