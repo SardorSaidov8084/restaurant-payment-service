@@ -55,5 +55,6 @@ func (s *merchantSvcImpl) UpdateMerchantSetting(ctx context.Context, entityID, c
 	return s.merchantRepo.UpdateMerchantSetting(ctx, setting)
 }
 func (s *merchantSvcImpl) GetMerchantSetting(ctx context.Context, entityID string) (*models.MerchantSetting, error) {
+	
 	return s.merchantRepo.GetMerchantSetting(ctx, entityID)
 }
