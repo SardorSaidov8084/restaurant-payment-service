@@ -28,7 +28,7 @@ func (s *merchantSvcImpl) CreateMerchantSetting(ctx context.Context, entityID st
 	setting := &models.MerchantSetting{
 		EntityID: entityID,
 		CashboxID: "",
-		Enabled: true,
+		Enabled: false,
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 	}
