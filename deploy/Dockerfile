@@ -23,6 +23,6 @@ COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 COPY --from=builder /go/bin/app /go/bin/app
 
-EXPOSE 4000
+EXPOSE 4500
 
 ENTRYPOINT ["/go/bin/app"]

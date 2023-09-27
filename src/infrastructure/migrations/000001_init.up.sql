@@ -45,6 +45,6 @@ CREATE INDEX IF NOT EXISTS idx_restaurant_tx ON transactions(restaurant_id);
 CREATE TABLE IF NOT EXISTS payment_cards (
 	id varchar(36) PRIMARY KEY,
     card_token VARCHAR(250),
-	created_at timestamp,
+	created_at timestamp
 );
 
