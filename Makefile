@@ -30,7 +30,7 @@ compose-up:
 compose-down:
 	docker-compose -f ./deploy/docker-compose.yml down
 
-gen-restaurant-payment-proto:
+gen-proto:
 	protoc \
 		--go_out=./src/application/protos \
 		--go_opt=paths=source_relative \
