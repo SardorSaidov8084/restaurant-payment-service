@@ -27,8 +27,8 @@ func Load() (Config, error) {
 
 	var config Config
 	v.SetDefault("LOG_LEVEL", "debug")
-	v.SetDefault("HTTP_PORT", ":3030")
-	v.SetDefault("GRPC_PORT", ":5000")
+	v.SetDefault("HTTP_PORT", ":3301")
+	v.SetDefault("GRPC_PORT", ":3300")
 	v.SetDefault("POSTGRES_HOST", "localhost")
 	v.SetDefault("POSTGRES_PORT", 5432)
 	v.SetDefault("POSTGRES_USER", "postgres")

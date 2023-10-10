@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5436:5432"
+      - "5432:5432"
     restart: always
     networks:
       - mcs-network
@@ -38,13 +38,13 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-  restaurant-payment-service:
-    image: restaurant-payment-service
-    container_name: restaurant-payment-service
+  restaurant-payment-svc:
+    image: restaurant-payment-svc
+    container_name: restaurant-payment-svc
     environment:
       - LOG_LEVEL=debug
-      - HTTP_PORT=:45000
-      - GRPC_PORT=:4545
+      - HTTP_PORT=:3301
+      - GRPC_PORT=:3300
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
       - POSTGRES_USER=postgres
@@ -52,8 +52,8 @@ services:
     depends_on:
       - restaurant-payment-migration
     ports:
-      - "45000:45000"
-      - "4545:4545"
+      - "3301:3301"
+      - "3300:3300"
     restart: always
     networks:
       - mcs-network
