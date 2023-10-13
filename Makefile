@@ -33,8 +33,12 @@ compose-down:
 gen-restaurant-payment-proto:
 	protoc \
 	--go_out=./src/application/protos \
-	--go_opt=paths=import \
+	--go_opt=paths=source_relative \
 	--go-grpc_out=./src/application/protos \
-	--go-grpc_opt=paths=import \
-	-I=$(PROTOS_PATH)/restaurant_payment \
+	--go-grpc_opt=paths=source_relative \
+	-I=$(PROTOS_PATH) \
 	$(PROTOS_PATH)/restaurant_payment/*.proto
+
+clear:
+	rm -rf ./src/application/protos/*
+

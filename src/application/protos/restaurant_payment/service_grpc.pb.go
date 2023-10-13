@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.24.3
-// source: service.proto
+// source: restaurant_payment/service.proto
 
 package restaurant_payment
 
@@ -42,7 +42,7 @@ func NewRestaurantPaymentClient(cc grpc.ClientConnInterface) RestaurantPaymentCl
 
 func (c *restaurantPaymentClient) UpdateMerchantSetting(ctx context.Context, in *UpdateMerchantSettingRequest, opts ...grpc.CallOption) (*UpdateMerchantSettingResponse, error) {
 	out := new(UpdateMerchantSettingResponse)
-	err := c.cc.Invoke(ctx, "/RestaurantPayment/UpdateMerchantSetting", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/restaurant_payment.RestaurantPayment/UpdateMerchantSetting", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *restaurantPaymentClient) UpdateMerchantSetting(ctx context.Context, in 
 
 func (c *restaurantPaymentClient) GetMerchantSetting(ctx context.Context, in *GetMerchantSettingRequest, opts ...grpc.CallOption) (*GetMerchantSettingResponse, error) {
 	out := new(GetMerchantSettingResponse)
-	err := c.cc.Invoke(ctx, "/RestaurantPayment/GetMerchantSetting", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/restaurant_payment.RestaurantPayment/GetMerchantSetting", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (c *restaurantPaymentClient) GetMerchantSetting(ctx context.Context, in *Ge
 
 func (c *restaurantPaymentClient) GetReceipt(ctx context.Context, in *GetReceiptRequest, opts ...grpc.CallOption) (*GetReceiptResponse, error) {
 	out := new(GetReceiptResponse)
-	err := c.cc.Invoke(ctx, "/RestaurantPayment/GetReceipt", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/restaurant_payment.RestaurantPayment/GetReceipt", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (c *restaurantPaymentClient) GetReceipt(ctx context.Context, in *GetReceipt
 
 func (c *restaurantPaymentClient) SaveTransaction(ctx context.Context, in *SaveTransactionRequest, opts ...grpc.CallOption) (*SaveTransactionResponse, error) {
 	out := new(SaveTransactionResponse)
-	err := c.cc.Invoke(ctx, "/RestaurantPayment/SaveTransaction", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/restaurant_payment.RestaurantPayment/SaveTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (c *restaurantPaymentClient) SaveTransaction(ctx context.Context, in *SaveT
 
 func (c *restaurantPaymentClient) UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*UpdateTransactionResponse, error) {
 	out := new(UpdateTransactionResponse)
-	err := c.cc.Invoke(ctx, "/RestaurantPayment/UpdateTransaction", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/restaurant_payment.RestaurantPayment/UpdateTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *restaurantPaymentClient) UpdateTransaction(ctx context.Context, in *Upd
 
 func (c *restaurantPaymentClient) GetTransaction(ctx context.Context, in *GetTransactionRequest, opts ...grpc.CallOption) (*GetTransactionResponse, error) {
 	out := new(GetTransactionResponse)
-	err := c.cc.Invoke(ctx, "/RestaurantPayment/GetTransaction", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/restaurant_payment.RestaurantPayment/GetTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -154,7 +154,7 @@ func _RestaurantPayment_UpdateMerchantSetting_Handler(srv interface{}, ctx conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/RestaurantPayment/UpdateMerchantSetting",
+		FullMethod: "/restaurant_payment.RestaurantPayment/UpdateMerchantSetting",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RestaurantPaymentServer).UpdateMerchantSetting(ctx, req.(*UpdateMerchantSettingRequest))
@@ -172,7 +172,7 @@ func _RestaurantPayment_GetMerchantSetting_Handler(srv interface{}, ctx context.
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/RestaurantPayment/GetMerchantSetting",
+		FullMethod: "/restaurant_payment.RestaurantPayment/GetMerchantSetting",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RestaurantPaymentServer).GetMerchantSetting(ctx, req.(*GetMerchantSettingRequest))
@@ -190,7 +190,7 @@ func _RestaurantPayment_GetReceipt_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/RestaurantPayment/GetReceipt",
+		FullMethod: "/restaurant_payment.RestaurantPayment/GetReceipt",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RestaurantPaymentServer).GetReceipt(ctx, req.(*GetReceiptRequest))
@@ -208,7 +208,7 @@ func _RestaurantPayment_SaveTransaction_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/RestaurantPayment/SaveTransaction",
+		FullMethod: "/restaurant_payment.RestaurantPayment/SaveTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RestaurantPaymentServer).SaveTransaction(ctx, req.(*SaveTransactionRequest))
@@ -226,7 +226,7 @@ func _RestaurantPayment_UpdateTransaction_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/RestaurantPayment/UpdateTransaction",
+		FullMethod: "/restaurant_payment.RestaurantPayment/UpdateTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RestaurantPaymentServer).UpdateTransaction(ctx, req.(*UpdateTransactionRequest))
@@ -244,7 +244,7 @@ func _RestaurantPayment_GetTransaction_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/RestaurantPayment/GetTransaction",
+		FullMethod: "/restaurant_payment.RestaurantPayment/GetTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RestaurantPaymentServer).GetTransaction(ctx, req.(*GetTransactionRequest))
@@ -256,7 +256,7 @@ func _RestaurantPayment_GetTransaction_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RestaurantPayment_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "RestaurantPayment",
+	ServiceName: "restaurant_payment.RestaurantPayment",
 	HandlerType: (*RestaurantPaymentServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -285,5 +285,5 @@ var RestaurantPayment_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "service.proto",
+	Metadata: "restaurant_payment/service.proto",
 }
