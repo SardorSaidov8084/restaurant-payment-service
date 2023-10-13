@@ -19,6 +19,7 @@ type Config struct {
 	SmsProvideApiKey string
 	JWTSecret        string
 	JWTExpiresInSec  int
+	KafkaAddress string
 }
 
 func Load() (Config, error) {
@@ -34,6 +35,7 @@ func Load() (Config, error) {
 	v.SetDefault("POSTGRES_USER", "postgres")
 	v.SetDefault("POSTGRES_PASSWORD", "postgres")
 	v.SetDefault("POSTGRES_DATABASE", "postgres")
+	v.SetDefault("KAFKA_ADDRESS", "broker:9092")
 	v.SetDefault("SMS_PROVIDER_API_KEY", "")
 	v.SetDefault("JWT_SECRET", "")
 	v.SetDefault("JWT_EXPIRES_IN_SEC", 2630000) // 1 month
@@ -47,6 +49,7 @@ func Load() (Config, error) {
 	config.PostgresPassword = v.GetString("POSTGRES_PASSWORD")
 	config.PostgresDatabase = v.GetString("POSTGRES_DATABASE")
 	config.SmsProvideApiKey = v.GetString("SMS_PROVIDER_API_KEY")
+	config.KafkaAddress = v.GetString("KAFKA_ADDRESS")
 	config.JWTSecret = v.GetString("JWT_SECRET")
 	config.JWTExpiresInSec = v.GetInt("JWT_EXPIRES_IN_SEC")
 
