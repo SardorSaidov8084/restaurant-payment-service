@@ -22,7 +22,7 @@ pull-protos-submodule:
 	git submodule update --recursive --remote
 	
 docker:
-	docker build --rm -t restaurant-payment-service -f ${PWD}/deploy/Dockerfile .
+	docker build --rm -t restaurant-payment-svc -f ${PWD}/deploy/Dockerfile .
 
 compose-up:
 	docker-compose -f ./deploy/docker-compose.yml up
@@ -30,15 +30,11 @@ compose-up:
 compose-down:
 	docker-compose -f ./deploy/docker-compose.yml down
 
-gen-restaurant-payment-proto:
+gen-proto:
 	protoc \
-	--go_out=./src/application/protos \
-	--go_opt=paths=source_relative \
-	--go-grpc_out=./src/application/protos \
-	--go-grpc_opt=paths=source_relative \
-	-I=$(PROTOS_PATH) \
-	$(PROTOS_PATH)/restaurant_payment/*.proto
-
-clear:
-	rm -rf ./src/application/protos/*
-
+		--go_out=./src/application/protos \
+		--go_opt=paths=source_relative \
+		--go-grpc_out=./src/application/protos \
+		--go-grpc_opt=paths=source_relative \
+		-I=$(PWD)/src/infrastructure/protos \
+		$(PWD)/src/infrastructure/protos/restaurant_payment/*.proto; \
