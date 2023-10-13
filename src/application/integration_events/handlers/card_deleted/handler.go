@@ -6,7 +6,6 @@ import (
 
 	carddeleted "github.com/SardorSaidov8084/restaurant-payment-service/src/application/integration_events/events/card_deleted"
 	"github.com/SardorSaidov8084/restaurant-payment-service/src/application/services"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	"go.uber.org/zap"
 )
