@@ -3,6 +3,8 @@ module github.com/SardorSaidov8084/restaurant-payment-service
 go 1.20
 
 require (
+	github.com/confluentinc/confluent-kafka-go v1.9.2
+	github.com/confluentinc/confluent-kafka-go/v2 v2.2.0
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.3.1

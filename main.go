@@ -11,6 +11,7 @@ import (
 	"time"
 
 	grpcserver "github.com/SardorSaidov8084/restaurant-payment-service/src/application/grpc"
+	integrationevents "github.com/SardorSaidov8084/restaurant-payment-service/src/application/integration_events"
 	pb "github.com/SardorSaidov8084/restaurant-payment-service/src/application/protos/restaurant_payment"
 	appsvc "github.com/SardorSaidov8084/restaurant-payment-service/src/application/services"
 	cardsvc "github.com/SardorSaidov8084/restaurant-payment-service/src/domain/card/services"
@@ -31,7 +32,7 @@ import (
 )
 
 func main() {
-
+	ctx, cancel := context.WithCancel(context.Background())
 	config, err := config.Load()
 	if err != nil {
 		panic(err)
@@ -69,6 +70,10 @@ func main() {
 
 	merchantApp :=  appsvc.NewMerchantApplicationService(merchantSvc)
 	paymentApp := appsvc.NewPaymentApplicationService(paymentSvc, cardSvc)
+	cardApp := appsvc.NewPaymentCardApplicationService(cardSvc)
+
+	//Events
+	integrationevents.StartConsumer(ctx, config, logger, cardApp)
 
 	root := gin.Default()
 
@@ -79,7 +84,6 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	ctx, cancel := context.WithCancel(context.Background())
 	g, ctx := errgroup.WithContext(ctx)
 
 	osSignals := make(chan os.Signal, 1)
